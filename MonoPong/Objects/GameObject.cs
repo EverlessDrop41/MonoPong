@@ -11,7 +11,7 @@ namespace MonoPong.Objects
         public Vector2 Size;
 
         public string textureName;
-        Texture2D texture;
+        public Texture2D texture;
 
         public GameObject (string TextureName){
             Start();
@@ -50,7 +50,6 @@ namespace MonoPong.Objects
         {
             Start();
 
-            textureName = Texture.Name;
             texture = Texture;
 
             Position = _Position;
@@ -61,14 +60,9 @@ namespace MonoPong.Objects
         {
             Start();
 
-            textureName = Texture.Name;
             texture = Texture;
 
             this.SetFromRect(rect);
-        }
-
-        public void LoadTexture(ref ContentManager content) {
-            texture = content.Load<Texture2D>(textureName);
         }
 
         public void SetFromRect(Rectangle Rect)
@@ -80,6 +74,11 @@ namespace MonoPong.Objects
         public virtual void Start()
         {
             //Called on creation
+        }
+
+        public virtual void LoadContent(ContentManager content)
+        {
+            texture = content.Load<Texture2D>(textureName);
         }
 
         public virtual void Update(GameTime time)

@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using MonoPong.Objects;
+
 namespace MonoPong
 {
     /// <summary>
@@ -14,6 +16,9 @@ namespace MonoPong
         SpriteBatch spriteBatch;
 
         Texture2D PaddleTexture;
+
+        Bat Paddle;
+        Bat Paddle2;
 
         public Pong()
         {
@@ -34,6 +39,12 @@ namespace MonoPong
             this.Window.AllowUserResizing = true;
 
             this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
+
+            //Game Objects
+            Paddle = new Bat(PaddleTexture, new Rectangle(40, 350, 15, 100));
+
+            Rectangle paddleRect = new Rectangle(graphics.GraphicsDevice.Viewport.Width - 40, 350, 15, 100);
+            Paddle2 = new Bat(Keys.W, Keys.S, PaddleTexture, paddleRect);
 
             base.Initialize();
         }
@@ -56,6 +67,8 @@ namespace MonoPong
 
             // TODO: use this.Content to load your game content here
             PaddleTexture = Content.Load<Texture2D>("Paddle");
+            Paddle.texture = PaddleTexture;
+            Paddle2.texture = PaddleTexture;
         }
 
         /// <summary>
@@ -78,6 +91,8 @@ namespace MonoPong
                 Exit();
 
             // TODO: Add your update logic here
+            Paddle.Update(gameTime, graphics);
+            Paddle2.Update(gameTime, graphics);
 
             base.Update(gameTime);
         }
@@ -90,8 +105,13 @@ namespace MonoPong
         {
             GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
 
+            // TODO: Add your drawing code here
+            Paddle.Draw(spriteBatch, gameTime);
+            Paddle2.Draw(spriteBatch, gameTime);
+
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
