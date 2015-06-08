@@ -13,17 +13,9 @@ namespace MonoPong.Objects
 
         public float Speed = 5;
 
-        public Bat(Texture2D texture) : base(texture) { }
+        public Bat(Rectangle rect) : base(rect) { }
 
-        public Bat(Texture2D texture, Rectangle Rect) : base(texture, Rect) { }
-
-        public Bat (Keys _UpKey, Keys _DownKey, Texture2D texture) : base(texture)
-        {
-            UpKey = _UpKey;
-            DownKey = _DownKey;
-        }
-
-        public Bat(Keys _UpKey, Keys _DownKey, Texture2D texture, Rectangle Rect) : base(texture, Rect)
+        public Bat(Keys _UpKey, Keys _DownKey, Rectangle rect) : base(rect)
         {
             UpKey = _UpKey;
             DownKey = _DownKey;
@@ -71,7 +63,7 @@ namespace MonoPong.Objects
 
             if (this.Position.Y + this.Size.Y > graphics.GraphicsDevice.Viewport.Bounds.Height)
             {
-                this.Position.Y = 10;
+                this.Position.Y = graphics.GraphicsDevice.Viewport.Bounds.Height - this.Size.Y;
             }
 
             oldKBState = newKBState;

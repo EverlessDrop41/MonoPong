@@ -41,10 +41,10 @@ namespace MonoPong
             this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
 
             //Game Objects
-            Paddle = new Bat(Keys.W, Keys.S, PaddleTexture, new Rectangle(40, 350, 15, 100));
+            Paddle = new Bat(Keys.W, Keys.S, new Rectangle(40, 350, 15, 100));
 
             Rectangle paddleRect = new Rectangle(graphics.GraphicsDevice.Viewport.Width - 40, 350, 15, 100);
-            Paddle2 = new Bat(PaddleTexture, paddleRect);
+            Paddle2 = new Bat(paddleRect);
 
             base.Initialize();
         }
