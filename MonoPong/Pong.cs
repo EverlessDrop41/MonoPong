@@ -41,10 +41,10 @@ namespace MonoPong
             this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
 
             //Game Objects
-            Paddle = new Bat(PaddleTexture, new Rectangle(40, 350, 15, 100));
+            Paddle = new Bat(Keys.W, Keys.S, PaddleTexture, new Rectangle(40, 350, 15, 100));
 
             Rectangle paddleRect = new Rectangle(graphics.GraphicsDevice.Viewport.Width - 40, 350, 15, 100);
-            Paddle2 = new Bat(Keys.W, Keys.S, PaddleTexture, paddleRect);
+            Paddle2 = new Bat(PaddleTexture, paddleRect);
 
             base.Initialize();
         }
@@ -93,6 +93,7 @@ namespace MonoPong
             // TODO: Add your update logic here
             Paddle.Update(gameTime, graphics);
             Paddle2.Update(gameTime, graphics);
+            Paddle2.Position = new Vector2(graphics.GraphicsDevice.Viewport.Width - 40, Paddle2.Position.Y);
 
             base.Update(gameTime);
         }
