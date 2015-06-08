@@ -12,7 +12,7 @@ namespace MonoPong.Objects
 
         public override string ToString()
         {
-            return string.Format("Player 1: {0} - Player 2: {1}", Player1.ToString(), Player2.ToString());
+            return string.Format("{0} : {1}", Player1.ToString(), Player2.ToString());
         }
     }
 

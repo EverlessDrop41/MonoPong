@@ -15,6 +15,8 @@ namespace MonoPong
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SpriteFont ScoreFont;
+
         Texture2D PaddleTexture;
         Texture2D BallTexture;
 
@@ -70,6 +72,8 @@ namespace MonoPong
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            ScoreFont = Content.Load<SpriteFont>("ScoreFont");
+
             PaddleTexture = Content.Load<Texture2D>("Paddle");
             Paddle.texture = PaddleTexture;
             Paddle2.texture = PaddleTexture;
@@ -122,6 +126,10 @@ namespace MonoPong
             Paddle.Draw(spriteBatch, gameTime);
             Paddle2.Draw(spriteBatch, gameTime);
             MainBall.Draw(spriteBatch, gameTime);
+
+            Vector2 textPosition = new Vector2((graphics.GraphicsDevice.Viewport.Width / 2) - (ScoreFont.MeasureString(MainBall.score.ToString()).X / 2), 30);
+
+            spriteBatch.DrawString(ScoreFont, MainBall.score.ToString(), textPosition, Color.White);
 
             spriteBatch.End();
             base.Draw(gameTime);
