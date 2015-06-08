@@ -8,6 +8,7 @@ namespace MonoPong.Objects
 {
     class Ball : GameObject
     {
+        public Score score;
 
         public float Speed = 5;
         public Vector2 Direction = new Vector2();
@@ -80,14 +81,14 @@ namespace MonoPong.Objects
             if (this.Position.X <= 0)
             {
                 //Hit Left Bound
-                ResetBall(graphics.GraphicsDevice.Viewport.Bounds);
+                ResetBall(graphics.GraphicsDevice.Viewport.Bounds, ResetReason.P2Score);
                 Console.WriteLine("Left Out");
             }
 
             if (this.Position.X + this.Size.X >= graphics.GraphicsDevice.Viewport.Bounds.Width)
             {
                 //Hit Right bound
-                ResetBall(graphics.GraphicsDevice.Viewport.Bounds);
+                ResetBall(graphics.GraphicsDevice.Viewport.Bounds, ResetReason.P1Score);
                 Console.WriteLine("Right Out");
             }
 
@@ -95,10 +96,15 @@ namespace MonoPong.Objects
             base.Update(time);
         }
 
-        void ResetBall(Rectangle Bounds)
+        void ResetBall(Rectangle Bounds, ResetReason reason)
         {
+            if (reason == ResetReason.P1Score) score.Player1 += 1;
+            if (reason == ResetReason.P2Score) score.Player2 += 1;
+
             Direction = new Vector2();
             Position = new Vector2(Bounds.Width / 2, Bounds.Height / 2);
+
+            Console.WriteLine(score.ToString());
         }
     }
 }
