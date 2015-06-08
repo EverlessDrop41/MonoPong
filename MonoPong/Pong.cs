@@ -16,9 +16,11 @@ namespace MonoPong
         SpriteBatch spriteBatch;
 
         Texture2D PaddleTexture;
+        Texture2D BallTexture;
 
         Bat Paddle;
         Bat Paddle2;
+        Ball MainBall;
 
         public Pong()
         {
@@ -46,6 +48,8 @@ namespace MonoPong
             Rectangle paddleRect = new Rectangle(graphics.GraphicsDevice.Viewport.Width - 40, 350, 15, 100);
             Paddle2 = new Bat(paddleRect);
 
+            MainBall = new Ball(new Rectangle(graphics.GraphicsDevice.Viewport.Width/2, graphics.GraphicsDevice.Viewport.Height/2, 15, 15));
+
             base.Initialize();
         }
 
@@ -69,6 +73,9 @@ namespace MonoPong
             PaddleTexture = Content.Load<Texture2D>("Paddle");
             Paddle.texture = PaddleTexture;
             Paddle2.texture = PaddleTexture;
+
+            BallTexture = Content.Load<Texture2D>("ball");
+            MainBall.texture = BallTexture;
         }
 
         /// <summary>
@@ -95,6 +102,9 @@ namespace MonoPong
             Paddle2.Update(gameTime, graphics);
             Paddle2.Position = new Vector2(graphics.GraphicsDevice.Viewport.Width - 40, Paddle2.Position.Y);
 
+            GameObject[] Paddles = {Paddle, Paddle2};
+
+            MainBall.Update(gameTime, graphics, Paddles);
             base.Update(gameTime);
         }
 
@@ -111,6 +121,7 @@ namespace MonoPong
             // TODO: Add your drawing code here
             Paddle.Draw(spriteBatch, gameTime);
             Paddle2.Draw(spriteBatch, gameTime);
+            MainBall.Draw(spriteBatch, gameTime);
 
             spriteBatch.End();
             base.Draw(gameTime);
