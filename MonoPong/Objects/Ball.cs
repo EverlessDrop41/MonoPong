@@ -39,15 +39,27 @@ namespace MonoPong.Objects
         {
             KeyboardState newKBState = Keyboard.GetState();
 
-            if (newKBState.IsKeyDown(Keys.Space) != oldKBState.IsKeyDown(Keys.Space))
+            Random rand = new Random();
+
+            if (newKBState.IsKeyDown(Keys.Space) && oldKBState.IsKeyUp(Keys.Space))
             {
-                Direction = new Vector2(3, 1);
+                int x = rand.Next(3, 5) * (rand.Next(100) >= 50 ? 1 : -1);
+                int y = rand.Next(1, 3) * (rand.Next(100) >= 50 ? 1 : -1);
+                Direction = new Vector2(x, y);
                 Console.WriteLine("Launch!");
             }
 
             foreach (GameObject obj in toCollideWith) {
                 if (this.GetRect().Intersects(obj.GetRect())) {
-                    this.Direction *= -1;
+                    if (this.Position.Y + Size.Y > obj.Position.Y + obj.Size.Y/2)
+                    {
+                        Direction.Y = Math.Abs(Direction.Y);
+                    }
+                    else
+                    {
+                        Direction.Y = Math.Abs(Direction.Y) * -1;
+                    }
+                    this.Direction.X *= -1; //TODO: Improve this collision
                 }
             }
 
@@ -56,30 +68,37 @@ namespace MonoPong.Objects
             if (this.Position.Y <= 0)
             {
                 //Hit Upper Bound
-                Direction *= -1;
+                Direction.Y *= -1;
             }
 
             if (this.Position.Y + this.Size.Y >= graphics.GraphicsDevice.Viewport.Bounds.Height)
             {
                 //Hit Lower bound
-                Direction *= -1;
+                Direction.Y *= -1;
             }
 
             if (this.Position.X <= 0)
             {
                 //Hit Left Bound
-                Direction *= -1;
+                ResetBall(graphics.GraphicsDevice.Viewport.Bounds);
+                Console.WriteLine("Left Out");
             }
 
             if (this.Position.X + this.Size.X >= graphics.GraphicsDevice.Viewport.Bounds.Width)
             {
                 //Hit Right bound
-                Direction *= -1;
+                ResetBall(graphics.GraphicsDevice.Viewport.Bounds);
                 Console.WriteLine("Right Out");
             }
 
             oldKBState = newKBState;
             base.Update(time);
+        }
+
+        void ResetBall(Rectangle Bounds)
+        {
+            Direction = new Vector2();
+            Position = new Vector2(Bounds.Width / 2, Bounds.Height / 2);
         }
     }
 }
