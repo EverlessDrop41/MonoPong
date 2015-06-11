@@ -8,6 +8,8 @@ namespace MonoPong.Objects
 {
     class Ball : GameObject
     {
+        public const int MAX_SPEED = 20;
+
         public Score score;
 
         public float Speed = 5;
@@ -50,8 +52,19 @@ namespace MonoPong.Objects
                 Console.WriteLine("Launch!");
             }
 
+            if (Direction.X > MAX_SPEED)
+            {
+                Direction.X = MAX_SPEED;
+            }
+
+            if (Direction.Y > MAX_SPEED)
+            {
+                Direction.Y = MAX_SPEED;
+            }
+
             foreach (GameObject obj in toCollideWith) {
                 if (this.GetRect().Intersects(obj.GetRect())) {
+                    /*
                     if (this.Position.Y + Size.Y > obj.Position.Y + obj.Size.Y/2)
                     {
                         Direction.Y = Math.Abs(Direction.Y);
@@ -59,8 +72,10 @@ namespace MonoPong.Objects
                     else
                     {
                         Direction.Y = Math.Abs(Direction.Y) * -1;
-                    }
-                    this.Direction.X *= -1; //TODO: Improve this collision
+                    }*/
+                    int x = rand.Next(0, 100);
+                    this.Direction.Y *= (x < 50 ? 1 : -1); //Randomize direction
+                    this.Direction *= -1.01f; //TODO: Improve this collision
                 }
             }
 
