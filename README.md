@@ -25,9 +25,16 @@ The engine
 ### GameObject [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Objects/GameObject.cs)
 
 This is the basic object for all the things in my game
+
 All object have the following Variables:
   - Position `Microsoft.Xna.Framework.Vector2`
   - Size `Microsoft.Xna.Framework.Vector2`
   - Texture (Sprite) `Microsoft.Xna.Framework.Graphics.Texture2D`
+
 And the following methods
-  - Constructor `new GamObject()` and `GameObject (Vector2 _Position, Vector2 _Size)`
+  - Constructor `GamObject()` and `GameObject (Vector2 _Position, Vector2 _Size)`
+  - Start `virtual void Start()` - Called when the object is created
+  - Update `virtual void Update(GameTime time)` - Called in MonoGames update function
+  - Draw `virtual void Draw(SpriteBatch spriteBatch, GameTime time)`
+  - GetRect `Rectangle GetRect()` - Returns a rectangle by combining `Position` and `Size`
+  - SetFromRect `void SetFromRect(Rectangle Rect)` - The opposite of `GetRect`
