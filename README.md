@@ -22,8 +22,8 @@ The sound effects are very minimal, simple beeps when the ball is hit or a shot 
 The engine
 ==
 
-[GameObject](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Objects/GameObject.cs)
---
+### GameObject [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Objects/GameObject.cs)
+
 This is the basic object for all the things in my game
 All object have the following Variables:
   - Position `Microsoft.Xna.Framework.Vector2`
