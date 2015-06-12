@@ -38,3 +38,13 @@ And the following methods
   - Draw `virtual void Draw(SpriteBatch spriteBatch, GameTime time)`
   - GetRect `Rectangle GetRect()` - Returns a rectangle by combining `Position` and `Size`
   - SetFromRect `void SetFromRect(Rectangle Rect)` - The opposite of `GetRect`
+
+In the methods some of them have the `virtual` keyword is used. This allows the method to be overriden by inherriting classes. Using this feature when can then go on to create the ball and bat objects
+
+### Bat (Paddle) [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Objects/Bat.cs)
+
+This object is the paddle the the player controls, it inherits from `GameObject`
+
+It overrides the following methods:
+  - Draw
+  - Update
