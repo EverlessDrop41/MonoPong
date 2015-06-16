@@ -55,3 +55,14 @@ It uses 3 extra variables
  - Speed `public float` - The speed the bat should move at
 
 There are new constructors to utilise these variables
+
+### Ball [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Objects/Ball.cs)
+
+This is the ball that gets hit by the paddle. Currently it is the only object which handles collisions, this is because it is the only object that needs to move according to physics. It inherits from `GameObject`
+
+The physics are very rough, and made to be slightly unrealisitic to make the game more enjoyable and randomised. When a bat hits the ball the x direction is reversed, and the Y direction either goes up or down based on a R.N.G.
+
+It overrides the following methods: 
+ - Update
+   - New Parameters it take are `GraphicsDeviceManager graphics` and `GameObject[] toCollideWith`
+ - Draw
