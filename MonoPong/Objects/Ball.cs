@@ -11,8 +11,7 @@ namespace MonoPong.Objects
         public const int MAX_SPEED = 20;
 
         public Score score;
-
-        public float Speed = 5;
+        
         public Vector2 Direction = new Vector2();
 
         public Ball(Rectangle rect) : base(rect) { }
