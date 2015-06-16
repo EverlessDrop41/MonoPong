@@ -48,3 +48,9 @@ This object is the paddle the the player controls, it inherits from `GameObject`
 It overrides the following methods:
   - Draw
   - Update
+
+It uses 3 extra variables
+ - KeyUP `public Keys` - The key that is pressed to move the paddle up
+ - KeyDown `public Keys` - The key that is pressed to move the paddle down
+ - Speed `public float` - The speed the bat should move at
+There are new constructors to utilise these variables
