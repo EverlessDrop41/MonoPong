@@ -66,3 +66,6 @@ It overrides the following methods:
  - Update
    - New Parameters it take are `GraphicsDeviceManager graphics` and `GameObject[] toCollideWith`
  - Draw
+
+It uses the following variables:
+  - MAX_SPEED `public const float` This is needed to keep the speed reasonable
