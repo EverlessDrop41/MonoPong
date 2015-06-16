@@ -50,7 +50,7 @@ It overrides the following methods:
   - Update
 
 It uses 3 extra variables
- - KeyUP `public Keys` - The key that is pressed to move the paddle up
- - KeyDown `public Keys` - The key that is pressed to move the paddle down
+ - UpKey `public Keys` - The key that is pressed to move the paddle up
+ - DownKey `public Keys` - The key that is pressed to move the paddle down
  - Speed `public float` - The speed the bat should move at
 There are new constructors to utilise these variables
