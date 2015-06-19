@@ -25,6 +25,7 @@ namespace MonoPong.Objects
         public void CreateBullet(Vector2 position, bool goingRight)
         {
             Rectangle rect = new Rectangle(new Point((int)position.X, (int)position.Y), new Point(15, 15));
+            CreateBullet(rect, goingRight);
         }
 
         public void CreateBullet(Vector2 Position, Vector2 Size, bool goingRight)

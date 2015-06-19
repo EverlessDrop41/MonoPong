@@ -10,15 +10,18 @@ namespace MonoPong.Objects
     {
         public Keys UpKey = Keys.Up;
         public Keys DownKey = Keys.Down;
+        public Keys FireKey = Keys.RightShift;
 
         public float Speed = 5;
+        public float bulletOffset = 10;
 
         public Bat(Rectangle rect) : base(rect) { }
 
-        public Bat(Keys _UpKey, Keys _DownKey, Rectangle rect) : base(rect)
+        public Bat(Keys _UpKey, Keys _DownKey, Keys _FireKey, Rectangle rect) : base(rect)
         {
             UpKey = _UpKey;
             DownKey = _DownKey;
+            FireKey = _FireKey;
         }
         
         public override void Start()
@@ -41,7 +44,7 @@ namespace MonoPong.Objects
 
         KeyboardState oldKBState;
 
-        public void Update(GameTime time, GraphicsDeviceManager graphics)
+        public void Update(GameTime time, GraphicsDeviceManager graphics, BulletList Bullets)
         {
             KeyboardState newKBState = Keyboard.GetState();
 
@@ -64,6 +67,14 @@ namespace MonoPong.Objects
             if (this.Position.Y + this.Size.Y > graphics.GraphicsDevice.Viewport.Bounds.Height)
             {
                 this.Position.Y = graphics.GraphicsDevice.Viewport.Bounds.Height - this.Size.Y;
+            }
+
+            if (newKBState.IsKeyDown(FireKey) && !oldKBState.IsKeyDown(FireKey))
+            {
+                Vector2 position = this.Position;
+                position.X += bulletOffset;
+                position.Y = this.Position.Y + (this.Size.Y / 2) - 7;
+                Bullets.CreateBullet(position, bulletOffset > 0);
             }
 
             oldKBState = newKBState;

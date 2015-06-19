@@ -47,7 +47,7 @@ namespace MonoPong
             this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
 
             //Game Objects
-            Paddle = new Bat(Keys.W, Keys.S, new Rectangle(40, 350, 15, 100));
+            Paddle = new Bat(Keys.W, Keys.S, Keys.F, new Rectangle(40, 350, 15, 100));
 
             Rectangle paddleRect = new Rectangle(graphics.GraphicsDevice.Viewport.Width - 40, 350, 15, 100);
             Paddle2 = new Bat(paddleRect);
@@ -105,11 +105,16 @@ namespace MonoPong
                 Exit();
 
             // TODO: Add your update logic here
-            Paddle.Update(gameTime, graphics);
-            Paddle2.Update(gameTime, graphics);
+            Paddle.Update(gameTime, graphics, Bullets);
+            Paddle2.Update(gameTime, graphics, Bullets);
             Paddle2.Position = new Vector2(graphics.GraphicsDevice.Viewport.Width - 40, Paddle2.Position.Y);
 
             GameObject[] Paddles = {Paddle, Paddle2};
+
+            foreach (Bullet bull in Bullets)
+            {
+                bull.Update(gameTime);
+            }
 
             MainBall.Update(gameTime, graphics, Paddles);
             base.Update(gameTime);
@@ -133,6 +138,10 @@ namespace MonoPong
             Vector2 textPosition = new Vector2((graphics.GraphicsDevice.Viewport.Width / 2) - (ScoreFont.MeasureString(MainBall.score.ToString()).X / 2), 30);
 
             spriteBatch.DrawString(ScoreFont, MainBall.score.ToString(), textPosition, Color.White);
+
+            foreach (Bullet bull in Bullets) {
+                spriteBatch.Draw(bull.texture, bull.GetRect(), Color.White);
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);
