@@ -69,7 +69,7 @@
     <Compile Include="Objects\Ball.cs" />
     <Compile Include="Objects\Bat.cs" />
     <Compile Include="Objects\Bullets\Bullet.cs" />
-    <Compile Include="Objects\Bullets\Bullets.cs" />
+    <Compile Include="Objects\Bullets\BulletList.cs" />
     <Compile Include="Objects\GameObject.cs" />
     <Compile Include="Objects\Score.cs" />
     <Compile Include="Pong.cs" />

@@ -20,6 +20,8 @@ namespace MonoPong
         Texture2D PaddleTexture;
         Texture2D BallTexture;
 
+        BulletList Bullets = new BulletList();
+
         Bat Paddle;
         Bat Paddle2;
         Ball MainBall;
@@ -77,6 +79,7 @@ namespace MonoPong
             PaddleTexture = Content.Load<Texture2D>("Paddle");
             Paddle.texture = PaddleTexture;
             Paddle2.texture = PaddleTexture;
+            Bullets.Texture = PaddleTexture;
 
             BallTexture = Content.Load<Texture2D>("ball");
             MainBall.texture = BallTexture;
