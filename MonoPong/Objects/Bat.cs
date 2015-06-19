@@ -13,7 +13,7 @@ namespace MonoPong.Objects
         public Keys FireKey = Keys.RightShift;
 
         public float Speed = 5;
-        public float bulletOffset = 10;
+        public float bulletOffset = 15;
 
         public Bat(Rectangle rect) : base(rect) { }
 
@@ -44,7 +44,7 @@ namespace MonoPong.Objects
 
         KeyboardState oldKBState;
 
-        public void Update(GameTime time, GraphicsDeviceManager graphics, BulletList Bullets)
+        public void Update(GameTime time, GraphicsDeviceManager graphics, BulletList Bullets, Pong game)
         {
             KeyboardState newKBState = Keyboard.GetState();
 
@@ -75,6 +75,14 @@ namespace MonoPong.Objects
                 position.X += bulletOffset;
                 position.Y = this.Position.Y + (this.Size.Y / 2) - 7;
                 Bullets.CreateBullet(position, bulletOffset > 0);
+            }
+
+            foreach (Bullet bull in Bullets)
+            {
+                if (this.GetRect().Intersects(bull.GetRect()))
+                {
+                    game.MainBall.ResetBall(game.GraphicsDevice.Viewport.Bounds, ResetReason.Meta);
+                }
             }
 
             oldKBState = newKBState;

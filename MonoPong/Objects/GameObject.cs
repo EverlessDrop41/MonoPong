@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace MonoPong.Objects
 {
-    class GameObject
+    public class GameObject
     {
         public Vector2 Position;
         public Vector2 Size;

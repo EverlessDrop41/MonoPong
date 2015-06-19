@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MonoPong.Objects
 {
-    struct Score
+    public struct Score
     {
         public int Player1;
         public int Player2;
@@ -16,7 +16,7 @@ namespace MonoPong.Objects
         }
     }
 
-    enum ResetReason
+    public enum ResetReason
     {
         P1Score,
         P2Score,

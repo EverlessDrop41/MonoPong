@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoPong.Objects
 {
-    class Bullet : GameObject
+    public class Bullet : GameObject
     {
         public Bullet(Rectangle rect, int Speed)
             : base(rect)

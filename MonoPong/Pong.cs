@@ -24,7 +24,7 @@ namespace MonoPong
 
         Bat Paddle;
         Bat Paddle2;
-        Ball MainBall;
+        public Ball MainBall;
 
         public Pong()
         {
@@ -52,7 +52,7 @@ namespace MonoPong
             Rectangle paddleRect = new Rectangle(graphics.GraphicsDevice.Viewport.Width - 40, 350, 15, 100);
             Paddle2 = new Bat(paddleRect);
 
-            Paddle2.bulletOffset = -10;
+            Paddle2.bulletOffset = -15;
 
             MainBall = new Ball(new Rectangle(graphics.GraphicsDevice.Viewport.Width/2, graphics.GraphicsDevice.Viewport.Height/2, 15, 15));
 
@@ -107,8 +107,8 @@ namespace MonoPong
                 Exit();
 
             // TODO: Add your update logic here
-            Paddle.Update(gameTime, graphics, Bullets);
-            Paddle2.Update(gameTime, graphics, Bullets);
+            Paddle.Update(gameTime, graphics, Bullets, this);
+            Paddle2.Update(gameTime, graphics, Bullets, this);
             Paddle2.Position = new Vector2(graphics.GraphicsDevice.Viewport.Width - 40, Paddle2.Position.Y);
 
             GameObject[] Paddles = {Paddle, Paddle2};

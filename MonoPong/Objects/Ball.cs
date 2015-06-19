@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoPong.Objects
 {
-    class Ball : GameObject
+    public class Ball : GameObject
     {
         public const int MAX_SPEED = 20;
 
@@ -110,7 +110,7 @@ namespace MonoPong.Objects
             base.Update(time);
         }
 
-        void ResetBall(Rectangle Bounds, ResetReason reason)
+        public void ResetBall(Rectangle Bounds, ResetReason reason)
         {
             if (reason == ResetReason.P1Score) score.Player1 += 1;
             if (reason == ResetReason.P2Score) score.Player2 += 1;
