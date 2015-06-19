@@ -6,11 +6,20 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoPong.Objects
 {
+    public enum BatType
+    {
+        Unset,
+        Player1,
+        Player2
+    }
+
     class Bat : GameObject
     {
         public Keys UpKey = Keys.Up;
         public Keys DownKey = Keys.Down;
         public Keys FireKey = Keys.RightShift;
+
+        public BatType type = BatType.Unset;
 
         public float Speed = 5;
         public float bulletOffset = 15;
@@ -77,11 +86,33 @@ namespace MonoPong.Objects
                 Bullets.CreateBullet(position, bulletOffset > 0);
             }
 
+            BulletList toRemove = new BulletList();
+
             foreach (Bullet bull in Bullets)
             {
                 if (this.GetRect().Intersects(bull.GetRect()))
                 {
-                    game.MainBall.ResetBall(game.GraphicsDevice.Viewport.Bounds, ResetReason.Meta);
+                    ResetReason reason = ResetReason.Meta;
+
+                    if (type == BatType.Player1)
+                    {
+                        reason = ResetReason.P2Score;
+                    }
+                    else if (type == BatType.Player2)
+                    {
+                        reason = ResetReason.P1Score;
+                    }
+
+                    game.MainBall.ResetBall(game.GraphicsDevice.Viewport.Bounds, reason);
+                    toRemove.Add(bull);
+                }
+            }
+
+            foreach (Bullet bull in toRemove)
+            {
+                if (Bullets.Contains(bull))
+                {
+                    Bullets.Remove(bull);
                 }
             }
 

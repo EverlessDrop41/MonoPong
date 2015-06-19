@@ -48,11 +48,13 @@ namespace MonoPong
 
             //Game Objects
             Paddle = new Bat(Keys.W, Keys.S, Keys.F, new Rectangle(40, 350, 15, 100));
+            Paddle.type = BatType.Player1;
 
             Rectangle paddleRect = new Rectangle(graphics.GraphicsDevice.Viewport.Width - 40, 350, 15, 100);
             Paddle2 = new Bat(paddleRect);
 
             Paddle2.bulletOffset = -15;
+            Paddle2.type = BatType.Player2;
 
             MainBall = new Ball(new Rectangle(graphics.GraphicsDevice.Viewport.Width/2, graphics.GraphicsDevice.Viewport.Height/2, 15, 15));
 
