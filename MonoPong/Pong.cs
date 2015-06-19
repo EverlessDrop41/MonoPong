@@ -52,6 +52,8 @@ namespace MonoPong
             Rectangle paddleRect = new Rectangle(graphics.GraphicsDevice.Viewport.Width - 40, 350, 15, 100);
             Paddle2 = new Bat(paddleRect);
 
+            Paddle2.bulletOffset = -10;
+
             MainBall = new Ball(new Rectangle(graphics.GraphicsDevice.Viewport.Width/2, graphics.GraphicsDevice.Viewport.Height/2, 15, 15));
 
             base.Initialize();
