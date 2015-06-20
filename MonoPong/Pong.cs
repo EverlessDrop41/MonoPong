@@ -9,6 +9,7 @@ namespace MonoPong
 {
     public enum GameState
     {
+        GenericState,
         MainMenu,
         Playing,
         GameOver
