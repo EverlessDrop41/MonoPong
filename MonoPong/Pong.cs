@@ -7,6 +7,13 @@ using MonoPong.Objects;
 
 namespace MonoPong
 {
+    public enum GameState
+    {
+        MainMenu,
+        Playing,
+        GameOver
+    }
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
