@@ -8,7 +8,7 @@ using MonoPong.Objects;
 
 namespace MonoPong.Levels
 {
-    class GameplayLevel : Level
+    public class GameplayLevel : Level
     {
         SpriteFont ScoreFont;
 

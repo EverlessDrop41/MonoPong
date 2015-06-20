@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoPong.Levels
 {
-    class Level
+    public class Level
     {
         public GameState State = GameState.GenericState;
         public Pong Game;

@@ -24,21 +24,13 @@ namespace MonoPong
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
 
-        SpriteFont ScoreFont;
-
-        Texture2D PaddleTexture;
-        Texture2D BallTexture;
-
-        BulletList Bullets = new BulletList();
-
-        Bat Paddle;
-        Bat Paddle2;
-        public Ball MainBall;
+        public GameplayLevel gameplay;
 
         public Pong()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            gameplay = new GameplayLevel(this);
         }
 
         /// <summary>
@@ -52,20 +44,9 @@ namespace MonoPong
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
             this.Window.AllowUserResizing = true;
-
             this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
 
-            //Game Objects
-            Paddle = new Bat(Keys.W, Keys.S, Keys.F, new Rectangle(40, 350, 15, 100));
-            Paddle.type = BatType.Player1;
-
-            Rectangle paddleRect = new Rectangle(graphics.GraphicsDevice.Viewport.Width - 40, 350, 15, 100);
-            Paddle2 = new Bat(paddleRect);
-
-            Paddle2.bulletOffset = -15;
-            Paddle2.type = BatType.Player2;
-
-            MainBall = new Ball(new Rectangle(graphics.GraphicsDevice.Viewport.Width/2, graphics.GraphicsDevice.Viewport.Height/2, 15, 15));
+            gameplay.Initialize();
 
             base.Initialize();
         }
@@ -86,16 +67,7 @@ namespace MonoPong
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            ScoreFont = Content.Load<SpriteFont>("ScoreFont");
-
-            PaddleTexture = Content.Load<Texture2D>("Paddle");
-            Paddle.texture = PaddleTexture;
-            Paddle2.texture = PaddleTexture;
-            Bullets.Texture = PaddleTexture;
-
-            BallTexture = Content.Load<Texture2D>("ball");
-            MainBall.texture = BallTexture;
+            gameplay.LoadContent();
         }
 
         /// <summary>
@@ -117,19 +89,8 @@ namespace MonoPong
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-            Paddle.Update(gameTime, graphics, Bullets, this);
-            Paddle2.Update(gameTime, graphics, Bullets, this);
-            Paddle2.Position = new Vector2(graphics.GraphicsDevice.Viewport.Width - 40, Paddle2.Position.Y);
+            gameplay.Update(gameTime);
 
-            GameObject[] Paddles = {Paddle, Paddle2};
-
-            foreach (Bullet bull in Bullets)
-            {
-                bull.Update(gameTime);
-            }
-
-            MainBall.Update(gameTime, graphics, Paddles);
             base.Update(gameTime);
         }
 
@@ -141,22 +102,8 @@ namespace MonoPong
         {
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin();
+            gameplay.Draw(gameTime);
 
-            // TODO: Add your drawing code here
-            Paddle.Draw(spriteBatch, gameTime);
-            Paddle2.Draw(spriteBatch, gameTime);
-            MainBall.Draw(spriteBatch, gameTime);
-
-            Vector2 textPosition = new Vector2((graphics.GraphicsDevice.Viewport.Width / 2) - (ScoreFont.MeasureString(MainBall.score.ToString()).X / 2), 30);
-
-            spriteBatch.DrawString(ScoreFont, MainBall.score.ToString(), textPosition, Color.White);
-
-            foreach (Bullet bull in Bullets) {
-                spriteBatch.Draw(bull.texture, bull.GetRect(), Color.White);
-            }
-
-            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

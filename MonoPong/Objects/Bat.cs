@@ -103,7 +103,7 @@ namespace MonoPong.Objects
                         reason = ResetReason.P1Score;
                     }
 
-                    game.MainBall.ResetBall(game.GraphicsDevice.Viewport.Bounds, reason);
+                    game.gameplay.MainBall.ResetBall(game.GraphicsDevice.Viewport.Bounds, reason);
                     toRemove.Add(bull);
                 }
             }
