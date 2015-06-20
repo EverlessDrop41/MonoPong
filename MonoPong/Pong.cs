@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using MonoPong.Objects;
+using MonoPong.Levels;
 
 namespace MonoPong
 {
@@ -20,8 +21,8 @@ namespace MonoPong
     /// </summary>
     public class Pong : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public GraphicsDeviceManager graphics;
+        public SpriteBatch spriteBatch;
 
         SpriteFont ScoreFont;
 
