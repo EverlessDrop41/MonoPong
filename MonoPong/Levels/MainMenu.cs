@@ -26,7 +26,8 @@ namespace MonoPong.Levels
 
             if (kbd.IsKeyDown(Keys.Enter))
             {
-                Game.SwitchLevel(GameState.Playing);
+                //string[] args = new string[0];
+                Game.SwitchLevel(GameState.Playing, new string[0]);
             }
 
             base.Update(gameTime);

@@ -128,7 +128,7 @@ namespace MonoPong
             base.Draw(gameTime);
         }
 
-        public void SwitchLevel(GameState state)
+        public void SwitchLevel(GameState state, string[] args)
         {
             CurrentState = state;
         }
