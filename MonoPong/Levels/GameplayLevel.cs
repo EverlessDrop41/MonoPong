@@ -26,7 +26,7 @@ namespace MonoPong.Levels
         public override void Initialize()
         {
             //Game Objects
-            Paddle = new Bat(Keys.W, Keys.S, Keys.F, new Rectangle(40, 350, 15, 100));
+            Paddle = new Bat(Keys.W, Keys.S, Keys.LeftShift, new Rectangle(40, 350, 15, 100));
             Paddle.type = BatType.Player1;
 
             Rectangle paddleRect = new Rectangle(this.Game.graphics.GraphicsDevice.Viewport.Width - 40, 350, 15, 100);
@@ -36,6 +36,7 @@ namespace MonoPong.Levels
             Paddle2.type = BatType.Player2;
 
             MainBall = new Ball(new Rectangle(this.Game.graphics.GraphicsDevice.Viewport.Width / 2, this.Game.graphics.GraphicsDevice.Viewport.Height / 2, 15, 15));
+            MainBall.game = this.Game;
 
             base.Initialize();
         }

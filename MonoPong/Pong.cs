@@ -26,6 +26,7 @@ namespace MonoPong
 
         public GameplayLevel gameplay;
         public MainMenu menu;
+        public GameOver gameover;
 
         public GameState CurrentState = GameState.MainMenu;
 
@@ -35,6 +36,7 @@ namespace MonoPong
             Content.RootDirectory = "Content";
             gameplay = new GameplayLevel(this);
             menu = new MainMenu(this);
+            gameover = new GameOver(this);
         }
 
         /// <summary>
@@ -73,6 +75,7 @@ namespace MonoPong
 
             gameplay.LoadContent();
             menu.LoadContent();
+            gameover.LoadContent();
         }
 
         /// <summary>
@@ -102,6 +105,9 @@ namespace MonoPong
                 case GameState.Playing:
                     gameplay.Update(gameTime);
                     break;
+                case GameState.GameOver:
+                    gameover.Update(gameTime);
+                    break;
             }
 
             base.Update(gameTime);
@@ -123,6 +129,9 @@ namespace MonoPong
                 case GameState.Playing:
                     gameplay.Draw(gameTime);
                     break;
+                case GameState.GameOver:
+                    gameover.Draw(gameTime);
+                    break;
             }
 
             base.Draw(gameTime);
@@ -131,6 +140,11 @@ namespace MonoPong
         public void SwitchLevel(GameState state, string[] args)
         {
             CurrentState = state;
+
+            if (CurrentState == GameState.GameOver)
+            {
+                gameover.SetMessage(args[0]);
+            }
         }
     }
 }

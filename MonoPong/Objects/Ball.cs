@@ -11,6 +11,8 @@ namespace MonoPong.Objects
         public const int MAX_SPEED = 20;
 
         public Score score;
+
+        public Pong game;
         
         public Vector2 Direction = new Vector2();
 
@@ -112,13 +114,32 @@ namespace MonoPong.Objects
 
         public void ResetBall(Rectangle Bounds, ResetReason reason)
         {
-            if (reason == ResetReason.P1Score) score.Player1 += 1;
-            if (reason == ResetReason.P2Score) score.Player2 += 1;
+            if (reason == ResetReason.P1Win)
+            {
+                string[] args = {"Player 1"};
+                game.SwitchLevel(GameState.GameOver, args);
+                score = new Score();
+            }
+            else if (reason == ResetReason.P2Win)
+            {
+                string[] args = { "Player 2" };
+                game.SwitchLevel(GameState.GameOver, args);
+            }
+            else
+            {
+                if (reason == ResetReason.P1Score) score.Player1 += 1;
+                if (reason == ResetReason.P2Score) score.Player2 += 1;
 
-            Direction = new Vector2();
-            Position = new Vector2(Bounds.Width / 2, Bounds.Height / 2);
+                Direction = new Vector2();
+                Position = new Vector2(Bounds.Width / 2, Bounds.Height / 2);
 
-            Console.WriteLine(score.ToString());
+                //Console.WriteLine(score.ToString());
+            }
+        }
+
+        private void Reset()
+        {
+            score = new Score();
         }
     }
 }

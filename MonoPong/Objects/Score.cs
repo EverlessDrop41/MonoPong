@@ -20,6 +20,8 @@ namespace MonoPong.Objects
     {
         P1Score,
         P2Score,
+        P1Win,
+        P2Win,
         Meta
     }
 }

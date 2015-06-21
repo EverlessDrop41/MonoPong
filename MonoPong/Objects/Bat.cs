@@ -96,11 +96,11 @@ namespace MonoPong.Objects
 
                     if (type == BatType.Player1)
                     {
-                        reason = ResetReason.P2Score;
+                        reason = ResetReason.P2Win;
                     }
                     else if (type == BatType.Player2)
                     {
-                        reason = ResetReason.P1Score;
+                        reason = ResetReason.P1Win;
                     }
 
                     game.gameplay.MainBall.ResetBall(game.GraphicsDevice.Viewport.Bounds, reason);

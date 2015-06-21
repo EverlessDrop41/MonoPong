@@ -8,7 +8,7 @@ namespace MonoPong.Levels
     public class GameOver : Level
     {
         SpriteFont Font;
-        private const string BASE_MSG = "{0} Wins! \n Press Enter To Restart";
+        private const string BASE_MSG = "{0} Wins!\nPress Enter To Restart";
         private string Message = BASE_MSG;
 
         public GameOver(Pong game) : base(game) { }
@@ -51,7 +51,7 @@ namespace MonoPong.Levels
             base.Draw(gameTime);
         }
 
-        private void SetMessage(string Player)
+        public void SetMessage(string Player)
         {
             Message = String.Format(BASE_MSG, Player);
         }
