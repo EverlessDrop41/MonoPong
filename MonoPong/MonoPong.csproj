@@ -66,6 +66,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Levels\GameOver.cs" />
     <Compile Include="Levels\GameplayLevel.cs" />
     <Compile Include="Levels\Level.cs" />
     <Compile Include="Levels\MainMenu.cs" />
