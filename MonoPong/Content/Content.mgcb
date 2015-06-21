@@ -47,3 +47,15 @@
 /processorParam:TextureFormat=Compressed
 /build:TitleFont.spritefont
 
+#begin Beep2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Beep2.wav
+
+#begin laser5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:laser5.wav
+

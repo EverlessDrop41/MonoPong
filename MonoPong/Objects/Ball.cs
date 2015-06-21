@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace MonoPong.Objects
 {
@@ -15,6 +16,8 @@ namespace MonoPong.Objects
         public Pong game;
         
         public Vector2 Direction = new Vector2();
+
+        public SoundEffect BeepEffect;
 
         public Ball(Rectangle rect) : base(rect) { }
 
@@ -77,6 +80,7 @@ namespace MonoPong.Objects
                     int x = rand.Next(0, 100);
                     this.Direction.Y *= (x < 50 ? 1 : -1); //Randomize direction
                     this.Direction *= -1.01f; //TODO: Improve this collision
+                    BeepEffect.Play();
                 }
             }
 

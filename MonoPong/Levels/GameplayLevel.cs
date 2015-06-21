@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 using MonoPong;
 using MonoPong.Objects;
@@ -14,6 +15,9 @@ namespace MonoPong.Levels
 
         Texture2D PaddleTexture;
         Texture2D BallTexture;
+
+        SoundEffect BeepEffect;
+        SoundEffect ShootEffect;
 
         public BulletList Bullets = new BulletList();
 
@@ -44,6 +48,13 @@ namespace MonoPong.Levels
         public override void LoadContent()
         {
             ScoreFont = Game.Content.Load<SpriteFont>("ScoreFont");
+
+            BeepEffect = Game.Content.Load<SoundEffect>("Beep2");
+            MainBall.BeepEffect = BeepEffect;
+
+            ShootEffect = Game.Content.Load<SoundEffect>("laser5");
+            Paddle.ShootEffect = ShootEffect;
+            Paddle2.ShootEffect = ShootEffect;
 
             PaddleTexture = Game.Content.Load<Texture2D>("Paddle");
             Paddle.texture = PaddleTexture;

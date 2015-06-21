@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace MonoPong.Objects
 {
@@ -20,6 +21,8 @@ namespace MonoPong.Objects
         public Keys FireKey = Keys.RightShift;
 
         public BatType type = BatType.Unset;
+
+        public SoundEffect ShootEffect;
 
         public float Speed = 5;
         public float bulletOffset = 15;
@@ -84,6 +87,7 @@ namespace MonoPong.Objects
                 position.X += bulletOffset;
                 position.Y = this.Position.Y + (this.Size.Y / 2) - 7;
                 Bullets.CreateBullet(position, bulletOffset > 0);
+                ShootEffect.Play();
             }
 
             BulletList toRemove = new BulletList();
