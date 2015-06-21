@@ -41,3 +41,9 @@
 /processorParam:TextureFormat=Compressed
 /build:ScoreFont.spritefont
 
+#begin TitleFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:TitleFont.spritefont
+
