@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Levels\GameplayLevel.cs" />
     <Compile Include="Levels\Level.cs" />
+    <Compile Include="Levels\MainMenu.cs" />
     <Compile Include="Objects\Ball.cs" />
     <Compile Include="Objects\Bat.cs" />
     <Compile Include="Objects\Bullets\Bullet.cs" />

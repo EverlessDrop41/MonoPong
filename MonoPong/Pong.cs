@@ -25,12 +25,16 @@ namespace MonoPong
         public SpriteBatch spriteBatch;
 
         public GameplayLevel gameplay;
+        public MainMenu menu;
+
+        public GameState CurrentState = GameState.MainMenu;
 
         public Pong()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             gameplay = new GameplayLevel(this);
+            menu = new MainMenu(this);
         }
 
         /// <summary>
@@ -68,6 +72,7 @@ namespace MonoPong
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             gameplay.LoadContent();
+            menu.LoadContent();
         }
 
         /// <summary>
@@ -89,7 +94,15 @@ namespace MonoPong
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            gameplay.Update(gameTime);
+            switch (CurrentState)
+            {
+                case GameState.MainMenu:
+                    menu.Update(gameTime);
+                    break;
+                case GameState.Playing:
+                    gameplay.Update(gameTime);
+                    break;
+            }
 
             base.Update(gameTime);
         }
@@ -102,9 +115,22 @@ namespace MonoPong
         {
             GraphicsDevice.Clear(Color.Black);
 
-            gameplay.Draw(gameTime);
+            switch (CurrentState)
+            {
+                case GameState.MainMenu:
+                    menu.Draw(gameTime);
+                    break;
+                case GameState.Playing:
+                    gameplay.Draw(gameTime);
+                    break;
+            }
 
             base.Draw(gameTime);
+        }
+
+        public void SwitchLevel(GameState state)
+        {
+            CurrentState = state;
         }
     }
 }
