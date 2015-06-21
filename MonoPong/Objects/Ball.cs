@@ -118,28 +118,30 @@ namespace MonoPong.Objects
             {
                 string[] args = {"Player 1"};
                 game.SwitchLevel(GameState.GameOver, args);
-                score = new Score();
+                Reset();
             }
             else if (reason == ResetReason.P2Win)
             {
                 string[] args = { "Player 2" };
                 game.SwitchLevel(GameState.GameOver, args);
+                Reset();
             }
             else
             {
                 if (reason == ResetReason.P1Score) score.Player1 += 1;
                 if (reason == ResetReason.P2Score) score.Player2 += 1;
 
-                Direction = new Vector2();
-                Position = new Vector2(Bounds.Width / 2, Bounds.Height / 2);
-
                 //Console.WriteLine(score.ToString());
             }
+
+            Direction = new Vector2();
+            Position = new Vector2(Bounds.Width / 2, Bounds.Height / 2);
         }
 
         private void Reset()
         {
             score = new Score();
+            game.gameplay.Bullets.Clear();
         }
     }
 }

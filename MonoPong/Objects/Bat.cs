@@ -105,6 +105,7 @@ namespace MonoPong.Objects
 
                     game.gameplay.MainBall.ResetBall(game.GraphicsDevice.Viewport.Bounds, reason);
                     toRemove.Add(bull);
+                    break;
                 }
             }
 

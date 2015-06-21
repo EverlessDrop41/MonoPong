@@ -7,7 +7,7 @@ using MonoPong.Objects;
 
 namespace MonoPong.Objects
 {
-    class BulletList : List<Bullet>
+    public class BulletList : List<Bullet>
     {
         public Texture2D Texture;
 

@@ -15,7 +15,7 @@ namespace MonoPong.Levels
         Texture2D PaddleTexture;
         Texture2D BallTexture;
 
-        BulletList Bullets = new BulletList();
+        public BulletList Bullets = new BulletList();
 
         Bat Paddle;
         Bat Paddle2;
