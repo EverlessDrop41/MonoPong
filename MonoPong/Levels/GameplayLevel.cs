@@ -21,7 +21,7 @@ namespace MonoPong.Levels
         Bat Paddle2;
         public Ball MainBall;
 
-        public GameplayLevel(Pong game) : base(game) { }
+        public GameplayLevel (Pong game) : base(game) { }
 
         public override void Initialize()
         {
