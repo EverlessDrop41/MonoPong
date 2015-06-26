@@ -44,11 +44,17 @@ In the methods some of them have the `virtual` keyword is used. This allows the 
 ### Level [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Levels/Level.cs)
 
 This class defines the basic variables and methods that are needed for a level in the game. In this game there are 3 'levels', they are:
-
  - Main Menu
  - Gameplay
  - Game Over
-
+ 
+It uses the following methods: 
+ - Intialize `public virtual void Intialize()` - The method to set up all the required content for the game, a bit like a secondary contructor.
+ - LoadContent `public virtual void LoadContent()` - The method to load all of the required content
+ - UnloadContent `public virtual void UnloadContent()` - The method to unload any content that is not loaded using the content manager
+ - Update `public virtual void Update(GameTime gameTime)` - This method is called on every frame, it should handle user input and physics.
+ - Draw `public virtual void Update(GameTime gameTime)` - This method draws the level and all that is in it.
+ 
 ### Bat (Paddle) [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Objects/Bat.cs)
 
 This object is the paddle the the player controls, it inherits from `GameObject`
