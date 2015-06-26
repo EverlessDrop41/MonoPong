@@ -7,7 +7,7 @@ This game is a twist on the classic game Pong. The twist is that the players can
 The bullet is earned when the player hits the ball 2 times during a run, so if the ball goes out then the player will not
 receive a bullet. When a player earns a point they also earn a bullet
 
-### The engine
+### About The engine
 
 The game will be created in C# by using a framework called [monogame](https://github.com/mono/MonoGame) which is an open source port of Microsofts XNA. The physics will be very basic and not include things like rotation.
 
@@ -41,6 +41,14 @@ And the following methods
 
 In the methods some of them have the `virtual` keyword is used. This allows the method to be overriden by inherriting classes. Using this feature when can then go on to create the ball and bat objects
 
+### Level [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Levels/Level.cs)
+
+This class defines the basic variables and methods that are needed for a level in the game. In this game there are 3 'levels', they are:
+
+ - Main Menu
+ - Gameplay
+ - Game Over
+
 ### Bat (Paddle) [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Objects/Bat.cs)
 
 This object is the paddle the the player controls, it inherits from `GameObject`
@@ -68,4 +76,4 @@ It overrides the following methods:
  - Draw
 
 It uses the following variables:
-  - MAX_SPEED `public const float` This is needed to keep the speed reasonable
+  - MAX_SPEED `public const float` - This is needed to keep the speed reasonable
