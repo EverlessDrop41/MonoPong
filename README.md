@@ -54,6 +54,8 @@ It uses the following methods:
  - UnloadContent `public virtual void UnloadContent()` - The method to unload any content that is not loaded using the content manager
  - Update `public virtual void Update(GameTime gameTime)` - This method is called on every frame, it should handle user input and physics.
  - Draw `public virtual void Update(GameTime gameTime)` - This method draws the level and all that is in it.
+
+As you may have noticed, a level uses very similar methods to an `MonoGame` Game class, this is because the levels are creating using a state manger. The state manage lists all of the levels and then decides which ones to call `Update` and `Draw` on. All levels have `Initialize`, `LoadContent` and `UnloadContent` called because they do not effect the gameplay. As the game scales it may be praticle to seperate the content loading method to when a level is switched to. Due to this state manging system, the class will only need one variable, which is the game: `public Pong Game`
  
 ### Bat (Paddle) [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Objects/Bat.cs)
 
