@@ -99,6 +99,12 @@ namespace MonoPong.Levels
 
             spriteBatch.DrawString(ScoreFont, MainBall.score.ToString(), textPosition, Color.White);
 
+            spriteBatch.DrawString(ScoreFont, Paddle.ammo.ToString(), new Vector2(15, 15), Color.White);
+
+            int Paddle2Length = (int)ScoreFont.MeasureString(Paddle2.ammo.ToString()).Length();
+            Console.WriteLine(Paddle2Length);
+            spriteBatch.DrawString(ScoreFont, Paddle2.ammo.ToString(), new Vector2((this.Game.graphics.GraphicsDevice.Viewport.Width - Paddle2Length) , 15), Color.White);
+
             foreach (Bullet bull in Bullets)
             {
                 spriteBatch.Draw(bull.texture, bull.GetRect(), Color.White);
