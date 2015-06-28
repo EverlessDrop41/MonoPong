@@ -1,2 +1,2 @@
 language: csharp
-solution: MonoPong.sln
+solution: MonoPong\MonoPong.csproj
