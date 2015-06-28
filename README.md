@@ -7,7 +7,7 @@ This game is a twist on the classic game Pong. The twist is that the players can
 The bullet is earned when the player hits the ball 2 times during a run, so if the ball goes out then the player will not
 receive a bullet. When a player earns a point they also earn a bullet
 
-### The engine
+### About The engine
 
 The game will be created in C# by using a framework called [monogame](https://github.com/mono/MonoGame) which is an open source port of Microsofts XNA. The physics will be very basic and not include things like rotation.
 
@@ -17,7 +17,7 @@ The game does not require any complex graphical work, all the sprites are colour
 
 ### Sound
 
-The sound effects are very minimal, simple beeps when the ball is hit or a shot is fired.
+The sound effects are very minimal, simple beeps when the ball is hit or a shot is fired. The shooting effect is from Kenny's asset pack
 
 The engine
 ==
@@ -41,6 +41,24 @@ And the following methods
 
 In the methods some of them have the `virtual` keyword is used. This allows the method to be overriden by inherriting classes. Using this feature when can then go on to create the ball and bat objects
 
+### Level [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Levels/Level.cs)
+
+This class defines the basic variables and methods that are needed for a level in the game. In this game there are 3 'levels', they are:
+ - Main Menu
+ - Gameplay
+ - Game Over
+ 
+It uses the following methods: 
+ - Intialize `public virtual void Intialize()` - The method to set up all the required content for the game, a bit like a secondary contructor.
+ - LoadContent `public virtual void LoadContent()` - The method to load all of the required content
+ - UnloadContent `public virtual void UnloadContent()` - The method to unload any content that is not loaded using the content manager
+ - Update `public virtual void Update(GameTime gameTime)` - This method is called on every frame, it should handle user input and physics.
+ - Draw `public virtual void Update(GameTime gameTime)` - This method draws the level and all that is in it.
+
+As you may have noticed, a level uses very similar methods to an `MonoGame` Game class, this is because the levels are creating using a state manger. The state manage lists all of the levels and then decides which ones to call `Update` and `Draw` on. All levels have `Initialize`, `LoadContent` and `UnloadContent` called because they do not effect the gameplay. As the game scales it may be praticle to seperate the content loading method to when a level is switched to. Due to this state manging system, the class will only need one variable, which is the game: `public Pong Game`
+
+The state is manged by a `public enum GameState`, this is a list of all the possible level types and needs to be updated if a new level is added.
+ 
 ### Bat (Paddle) [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Objects/Bat.cs)
 
 This object is the paddle the the player controls, it inherits from `GameObject`
@@ -68,4 +86,4 @@ It overrides the following methods:
  - Draw
 
 It uses the following variables:
-  - MAX_SPEED `public const float` This is needed to keep the speed reasonable
+  - MAX_SPEED `public const float` - This is needed to keep the speed reasonable
