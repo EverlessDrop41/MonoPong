@@ -42,7 +42,7 @@ namespace MonoPong.Objects
 
         KeyboardState oldKBState;
 
-        public void Update(GameTime time, GraphicsDeviceManager graphics, GameObject[] toCollideWith)
+        public void Update(GameTime time, GraphicsDeviceManager graphics, Bat[] toCollideWith)
         {
             KeyboardState newKBState = Keyboard.GetState();
 
@@ -51,7 +51,7 @@ namespace MonoPong.Objects
             if (newKBState.IsKeyDown(Keys.Space) && oldKBState.IsKeyUp(Keys.Space))
             {
                 int x = rand.Next(3, 5) * (rand.Next(100) >= 50 ? 1 : -1);
-                int y = rand.Next(1, 3) * (rand.Next(100) >= 50 ? 1 : -1);
+                int y = rand.Next(1, 2) * (rand.Next(100) >= 50 ? 1 : -1);
                 Direction = new Vector2(x, y);
                 Console.WriteLine("Launch!");
             }
@@ -66,7 +66,7 @@ namespace MonoPong.Objects
                 Direction.Y = MAX_SPEED;
             }
 
-            foreach (GameObject obj in toCollideWith) {
+            foreach (Bat obj in toCollideWith) {
                 if (this.GetRect().Intersects(obj.GetRect())) {
                     /*
                     if (this.Position.Y + Size.Y > obj.Position.Y + obj.Size.Y/2)
@@ -81,6 +81,8 @@ namespace MonoPong.Objects
                     this.Direction.Y *= (x < 50 ? 1 : -1); //Randomize direction
                     this.Direction *= -1.01f; //TODO: Improve this collision
                     BeepEffect.Play();
+
+                    obj.OnCollide();
                 }
             }
 

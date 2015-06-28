@@ -14,7 +14,7 @@ namespace MonoPong.Objects
         Player2
     }
 
-    class Bat : GameObject
+    public class Bat : GameObject
     {
         public Keys UpKey = Keys.Up;
         public Keys DownKey = Keys.Down;
@@ -26,6 +26,8 @@ namespace MonoPong.Objects
 
         public float Speed = 5;
         public float bulletOffset = 15;
+
+        public int ammo = 0;
 
         public Bat(Rectangle rect) : base(rect) { }
 
@@ -56,6 +58,11 @@ namespace MonoPong.Objects
 
         KeyboardState oldKBState;
 
+        public void OnCollide()
+        {
+            ammo++;
+        }
+
         public void Update(GameTime time, GraphicsDeviceManager graphics, BulletList Bullets, Pong game)
         {
             KeyboardState newKBState = Keyboard.GetState();
@@ -81,13 +88,14 @@ namespace MonoPong.Objects
                 this.Position.Y = graphics.GraphicsDevice.Viewport.Bounds.Height - this.Size.Y;
             }
 
-            if (newKBState.IsKeyDown(FireKey) && !oldKBState.IsKeyDown(FireKey))
+            if (ammo > 0 && newKBState.IsKeyDown(FireKey) && !oldKBState.IsKeyDown(FireKey))
             {
                 Vector2 position = this.Position;
                 position.X += bulletOffset;
                 position.Y = this.Position.Y + (this.Size.Y / 2) - 7;
                 Bullets.CreateBullet(position, bulletOffset > 0);
                 ShootEffect.Play();
+                ammo--;
             }
 
             BulletList toRemove = new BulletList();

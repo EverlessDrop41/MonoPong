@@ -71,7 +71,7 @@ namespace MonoPong.Levels
             Paddle2.Update(gameTime, this.Game.graphics, Bullets, this.Game);
             Paddle2.Position = new Vector2(this.Game.graphics.GraphicsDevice.Viewport.Width - 40, Paddle2.Position.Y);
 
-            GameObject[] Paddles = { Paddle, Paddle2 };
+            Bat[] Paddles = { Paddle, Paddle2 };
 
             foreach (Bullet bull in Bullets)
             {
