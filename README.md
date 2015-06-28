@@ -17,7 +17,7 @@ The game does not require any complex graphical work, all the sprites are colour
 
 ### Sound
 
-The sound effects are very minimal, simple beeps when the ball is hit or a shot is fired.
+The sound effects are very minimal, simple beeps when the ball is hit or a shot is fired. The shooting effect is from Kenny's asset pack
 
 The engine
 ==
