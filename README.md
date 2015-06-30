@@ -43,8 +43,9 @@ In the methods some of them have the `virtual` keyword is used. This allows the 
 
 ### Level [Link](https://github.com/EverlessDrop41/MonoPong/blob/master/MonoPong/Levels/Level.cs)
 
-This class defines the basic variables and methods that are needed for a level in the game. In this game there are 3 'levels', they are:
+This class defines the basic variables and methods that are needed for a level in the game. The levels in this game are:
  - Main Menu
+ - Instructions (Planned)
  - Gameplay
  - Game Over
  
