@@ -100,4 +100,4 @@ I  would say that the best feature of BattlePong is the expand-ability that the 
 
 #### Negatives / Improvements
 
- 
+Despite the basic engine classes I made at the start I also lacked some useful knowledge when I started that meant at the later stages of development code would often be hacky or poorly optimised. So next time I would think more about where I want to take the project at the start, thus allowing me to build a better engine. Another one of the weaknesses in the game is physics, this is where most of the time was spent and is infact the hackiest part of the code, so if I were to redo theproject I would think more about how I want to implement physics
