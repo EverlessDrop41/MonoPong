@@ -88,3 +88,16 @@ It overrides the following methods:
 
 It uses the following variables:
   - MAX_SPEED `public const float` - This is needed to keep the speed reasonable
+
+Evaluation
+===
+
+The following text will describe how I feel the project went and if I were to do the project again what I would change and do differently. The main purpose of the project was to learn how to use the framework `MonoGame`.
+
+#### Positives
+
+I  would say that the best feature of BattlePong is the expand-ability that the project offers, when making it I tried to make a basic game engine behind it and this was useful when working on the later stages of the game. Another thing I am happy with is that I used version control (`git`) a lot more than I usually do.
+
+#### Negatives / Improvements
+
+ 
